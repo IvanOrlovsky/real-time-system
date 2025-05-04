@@ -7,9 +7,12 @@ import {
 	TextInput,
 } from "@patternfly/react-core";
 import ExclamationCircleIcon from "@patternfly/react-icons/dist/esm/icons/exclamation-circle-icon";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { authService } from "../../api";
+import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
-export default function RegisterPage() {
+export function RegisterPage() {
 	const [showHelperText, setShowHelperText] = useState(false);
 	const [email, setEmail] = useState("");
 	const [isValidEmail, setIsValidEmail] = useState(true);
@@ -19,6 +22,8 @@ export default function RegisterPage() {
 	const [isValidToken, setIsValidToken] = useState<"default" | "error">(
 		"default"
 	);
+
+	let navigate = useNavigate();
 
 	const handleEmailChange = (
 		_event: React.FormEvent<HTMLInputElement>,
@@ -41,7 +46,7 @@ export default function RegisterPage() {
 		setToken(value);
 	};
 
-	const onLoginButtonClick = (
+	const onLoginButtonClick = async (
 		event: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		event.preventDefault();
@@ -56,6 +61,21 @@ export default function RegisterPage() {
 				password,
 				token,
 			};
+			try {
+				const response = await authService.registerAdmin(formData);
+				if (response.data.status === "Ok") {
+					Cookies.set("email", email);
+					Cookies.set("password", password);
+					Cookies.set("token", token);
+					toast.success("Регистрация прошла успешно!");
+					navigate("/");
+				} else {
+					throw response;
+				}
+			} catch (e) {
+				console.error("Ошибка при Регистрации: ", e);
+				toast.error("Не удалось зарегистрироваться!");
+			}
 		}
 	};
 

@@ -5,14 +5,19 @@ import {
 	LoginPage as PatternFlyLoginPage,
 } from "@patternfly/react-core";
 import ExclamationCircleIcon from "@patternfly/react-icons/dist/esm/icons/exclamation-circle-icon";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import Cookies from "js-cookie";
+import { authService } from "../../api";
+import toast from "react-hot-toast";
 
-export default function LoginPage() {
+export function LoginPage() {
 	const [showHelperText, setShowHelperText] = useState(false);
 	const [email, setEmail] = useState("");
 	const [isValidEmail, setIsValidEmail] = useState(true);
 	const [password, setPassword] = useState("");
 	const [isValidPassword, setIsValidPassword] = useState(true);
+
+	let navigate = useNavigate();
 
 	const handleUsernameChange = (
 		_event: React.FormEvent<HTMLInputElement>,
@@ -28,7 +33,7 @@ export default function LoginPage() {
 		setPassword(value);
 	};
 
-	const onLoginButtonClick = (
+	const onLoginButtonClick = async (
 		event: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		event.preventDefault();
@@ -41,6 +46,20 @@ export default function LoginPage() {
 				email,
 				password,
 			};
+			try {
+				const response = await authService.login(formData);
+				if (response.data.status === "Ok") {
+					Cookies.set("email", email);
+					Cookies.set("password", password);
+					toast.success("Вход прошел успешно!");
+					navigate("/");
+				} else {
+					throw response;
+				}
+			} catch (e) {
+				console.error("Ошибка при Входе: ", e);
+				toast.error("Не удалось войти!");
+			}
 		}
 	};
 
