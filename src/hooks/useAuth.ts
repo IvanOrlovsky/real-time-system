@@ -48,5 +48,13 @@ export const useAuth = () => {
 		checkAuth();
 	}, []);
 
-	return { user, isLoading };
+	const logout = () => {
+		setUser(null);
+		Cookies.remove("email");
+		Cookies.remove("password");
+		Cookies.remove("token");
+		Cookies.remove("brick-session-id");
+	};
+
+	return { user, isLoading, logout };
 };

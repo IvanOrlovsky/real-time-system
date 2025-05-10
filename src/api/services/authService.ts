@@ -1,4 +1,4 @@
-import { apiAxiosInstance } from "../axiosInstance";
+import { apiAxiosInstance, BaseOkResponce } from "../axiosInstance";
 import { API_PATHS } from "../endpointPaths";
 
 type RegisterRequestType = {
@@ -9,13 +9,9 @@ type RegisterRequestType = {
 
 type LoginRequestType = Omit<RegisterRequestType, "token">;
 
-type AuthResponse = {
-	status: "Ok";
-};
-
 export const authService = {
 	registerAdmin: (data: RegisterRequestType) =>
-		apiAxiosInstance.post<AuthResponse>(API_PATHS.AUTH.REGISTER, data),
+		apiAxiosInstance.post<BaseOkResponce>(API_PATHS.AUTH.REGISTER, data),
 	login: (data: LoginRequestType) =>
-		apiAxiosInstance.post<AuthResponse>(API_PATHS.AUTH.LOGIN, data),
+		apiAxiosInstance.post<BaseOkResponce>(API_PATHS.AUTH.LOGIN, data),
 };

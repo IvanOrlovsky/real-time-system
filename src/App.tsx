@@ -3,7 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { HomePage, LoginPage, RegisterPage } from "./pages";
 
-import { ProtectedRoute } from "./components";
+import { Header, ProtectedRoute } from "./components";
 import { useAuth } from "./hooks";
 import { LoadingPage } from "./pages/loading/LoadingPage";
 
@@ -25,7 +25,9 @@ function App() {
 							/>
 						}
 					>
-						<Route path="/" element={<HomePage />} />
+						<Route element={<Header />}>
+							<Route path="/" element={<HomePage />} />
+						</Route>
 					</Route>
 
 					<Route

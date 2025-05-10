@@ -100,7 +100,7 @@ export function RegisterPage() {
 			isValidPassword={isValidPassword}
 			isShowPasswordEnabled
 			onLoginButtonClick={onLoginButtonClick}
-			loginButtonLabel="Войти"
+			loginButtonLabel="Зарегистрироваться"
 		/>
 	);
 
