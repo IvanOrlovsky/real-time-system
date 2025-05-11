@@ -26,6 +26,7 @@ export const useAuth = () => {
 			});
 		} catch (e) {
 			console.error("Ошибка при попытке войти: ", e);
+			setUser(null);
 		}
 	};
 
@@ -40,12 +41,12 @@ export const useAuth = () => {
 
 			if (isAuthed) {
 				await auth(email, password, isAdmin);
+			} else {
+				setUser(null);
 			}
-
-			setIsLoading(false);
 		};
 
-		checkAuth();
+		checkAuth().finally(() => setIsLoading(false));
 	}, []);
 
 	const logout = () => {
@@ -56,5 +57,5 @@ export const useAuth = () => {
 		Cookies.remove("brick-session-id");
 	};
 
-	return { user, isLoading, logout };
+	return { user, isLoading, logout, auth };
 };

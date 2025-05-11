@@ -68,6 +68,7 @@ export function RegisterPage() {
 					Cookies.set("password", password);
 					Cookies.set("token", token);
 					toast.success("Регистрация прошла успешно!");
+
 					navigate("/");
 				} else {
 					throw response;

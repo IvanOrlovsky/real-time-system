@@ -1,15 +1,16 @@
 import React from "react";
 
 import { Navigate, Outlet } from "react-router";
+import { useAuth } from "../../hooks";
+import { LoadingPage } from "../../pages/loading/LoadingPage";
 
-type ProtectedRouteProps = {
-	isAuthed: boolean;
-	redirectTo: string;
-};
+export function ProtectedRoute() {
+	const { user, isLoading } = useAuth();
 
-export function ProtectedRoute(props: ProtectedRouteProps) {
-	if (!props.isAuthed) {
-		return <Navigate to={props.redirectTo} />;
+	if (isLoading) return <LoadingPage text="Проверяем авторизацию..." />;
+
+	if (!user) {
+		return <Navigate to="/" replace />;
 	}
 
 	return <Outlet />;

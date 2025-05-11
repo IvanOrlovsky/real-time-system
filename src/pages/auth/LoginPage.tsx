@@ -51,7 +51,9 @@ export function LoginPage() {
 				if (response.data.status === "Ok") {
 					Cookies.set("email", email);
 					Cookies.set("password", password);
+
 					toast.success("Вход прошел успешно!");
+
 					navigate("/");
 				} else {
 					throw response;

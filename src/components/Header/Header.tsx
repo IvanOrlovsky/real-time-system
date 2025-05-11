@@ -66,8 +66,12 @@ export function Header() {
 						<FlexItem align={{ default: "alignRight" }}>
 							<Button
 								variant="danger"
-								onClick={() => {
+								onClick={async () => {
 									logout();
+
+									await new Promise((resolve) =>
+										setTimeout(resolve, 500)
+									);
 									navigate("/auth/login");
 								}}
 							>

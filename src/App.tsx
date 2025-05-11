@@ -14,7 +14,7 @@ import { useAuth } from "./hooks";
 import { LoadingPage } from "./pages/loading/LoadingPage";
 
 function App() {
-	const { user, isLoading } = useAuth();
+	const { isLoading } = useAuth();
 
 	if (isLoading) return <LoadingPage text="Подождите совсем чуть-чуть" />;
 
@@ -23,47 +23,22 @@ function App() {
 			<Toaster />
 			<BrowserRouter>
 				<Routes>
-					<Route
-						element={
-							<ProtectedRoute
-								redirectTo="/auth/login"
-								isAuthed={!!user}
-							/>
-						}
-					>
+					<Route element={<ProtectedRoute />}>
 						<Route element={<Header />}>
 							<Route path="/" element={<HomePage />} />
 							<Route
-								element={
-									<ProtectedRoute
-										redirectTo="/"
-										isAuthed={!user?.isAdmin}
-									/>
-								}
-							>
-								<Route
-									path="/power-supply"
-									element={<PowerSupplyPage />}
-								/>
-								<Route
-									path="/refridgeration"
-									element={<RefridgerationPage />}
-								/>
-							</Route>
+								path="/power-supply"
+								element={<PowerSupplyPage />}
+							/>
+							<Route
+								path="/refridgeration"
+								element={<RefridgerationPage />}
+							/>
 						</Route>
 					</Route>
 
-					<Route
-						element={
-							<ProtectedRoute redirectTo="/" isAuthed={!user} />
-						}
-					>
-						<Route path="/auth/login" element={<LoginPage />} />
-						<Route
-							path="/auth/register"
-							element={<RegisterPage />}
-						/>
-					</Route>
+					<Route path="/auth/login" element={<LoginPage />} />
+					<Route path="/auth/register" element={<RegisterPage />} />
 				</Routes>
 			</BrowserRouter>
 		</>
