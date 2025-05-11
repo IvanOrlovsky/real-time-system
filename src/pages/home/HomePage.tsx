@@ -1,3 +1,4 @@
+import { Navigate } from "react-router";
 import { useAuth } from "../../hooks";
 import { LoadingPage } from "../loading/LoadingPage";
 import { AdminPage } from "./admin";
@@ -9,5 +10,5 @@ export function HomePage() {
 
 	if (user?.isAdmin) return <AdminPage />;
 
-	return <>HOME PAGE - {JSON.stringify(user, null, 4)}</>;
+	return <Navigate to="/power-supply" />;
 }

@@ -1,7 +1,13 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router";
-import { HomePage, LoginPage, RegisterPage } from "./pages";
+import {
+	HomePage,
+	LoginPage,
+	PowerSupplyPage,
+	RefridgerationPage,
+	RegisterPage,
+} from "./pages";
 
 import { Header, ProtectedRoute } from "./components";
 import { useAuth } from "./hooks";
@@ -27,6 +33,23 @@ function App() {
 					>
 						<Route element={<Header />}>
 							<Route path="/" element={<HomePage />} />
+							<Route
+								element={
+									<ProtectedRoute
+										redirectTo="/"
+										isAuthed={!user?.isAdmin}
+									/>
+								}
+							>
+								<Route
+									path="/power-supply"
+									element={<PowerSupplyPage />}
+								/>
+								<Route
+									path="/refridgeration"
+									element={<RefridgerationPage />}
+								/>
+							</Route>
 						</Route>
 					</Route>
 

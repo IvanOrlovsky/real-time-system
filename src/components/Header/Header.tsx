@@ -10,6 +10,7 @@ import {
 } from "@patternfly/react-core";
 import { useAuth } from "../../hooks";
 import { Outlet, useNavigate } from "react-router";
+import { PowerSupplyIcon, RefrigerationIcon } from "../icons";
 
 export function Header() {
 	const { logout, user } = useAuth();
@@ -21,16 +22,48 @@ export function Header() {
 				<MastheadMain>
 					<MastheadBrand>
 						<MastheadLogo>
-							Админская панель ({user?.email})
+							{user?.isAdmin
+								? "Админская панель"
+								: "Панель сотрудника"}{" "}
+							({user?.email})
 						</MastheadLogo>
 					</MastheadBrand>
 				</MastheadMain>
 				<MastheadContent>
-					<Flex
-						justifyContent={{ default: "justifyContentFlexEnd" }}
-						style={{ width: "100%" }}
-					>
-						<FlexItem>
+					<Flex style={{ width: "100%" }}>
+						{!user?.isAdmin && (
+							<FlexItem>
+								<Button
+									component="a"
+									href="/power-supply"
+									variant="secondary"
+									icon={
+										<PowerSupplyIcon
+											color="#FFF"
+											height={24}
+											width={24}
+										/>
+									}
+								>
+									Электроснабжение
+								</Button>
+								<Button
+									component="a"
+									href="/refridgeration"
+									variant="secondary"
+									icon={
+										<RefrigerationIcon
+											color="#FFF"
+											height={24}
+											width={24}
+										/>
+									}
+								>
+									Холодоснабжение
+								</Button>
+							</FlexItem>
+						)}
+						<FlexItem align={{ default: "alignRight" }}>
 							<Button
 								variant="danger"
 								onClick={() => {
