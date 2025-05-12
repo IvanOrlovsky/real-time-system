@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router";
 import {
 	HomePage,
+	IncidentPage,
 	LoginPage,
 	PowerSupplyPage,
 	RefridgerationPage,
@@ -27,6 +28,10 @@ function App() {
 					<Route element={<ProtectedRoute />}>
 						<Route element={<Header />}>
 							<Route path="/" element={<HomePage />} />
+							<Route
+								path="/incident"
+								element={<IncidentPage />}
+							/>
 							<Route element={<IncedentLayout />}>
 								<Route
 									path="/power-supply"

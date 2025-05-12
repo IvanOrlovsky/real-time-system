@@ -39,11 +39,18 @@ export function Header() {
 				<MastheadContent>
 					<Flex style={{ width: "100%" }}>
 						{!user?.isAdmin && (
-							<FlexItem>
-								<Link to="/power-supply">
-									Мониторинг систем
-								</Link>
-							</FlexItem>
+							<>
+								<FlexItem>
+									<Link to="/power-supply">
+										Мониторинг систем
+									</Link>
+								</FlexItem>
+								<FlexItem>
+									<Link to="/incident">
+										Список инцидентов
+									</Link>
+								</FlexItem>
+							</>
 						)}
 						<FlexItem align={{ default: "alignRight" }}>
 							<Button
