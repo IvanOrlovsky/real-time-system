@@ -95,7 +95,11 @@ export const CreateIncidentModal: React.FunctionComponent<
 						<DateTimePicker onChange={(val) => setTimestamp(val)} />
 					</FormGroup>
 
-					<FormGroup label="Файл" isRequired fieldId="incident-file">
+					<FormGroup
+						label="Файл отчета"
+						isRequired
+						fieldId="incident-file"
+					>
 						<FileUpload
 							id="incident-file"
 							value={file}
