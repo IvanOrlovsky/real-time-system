@@ -14,5 +14,6 @@ export const API_PATHS = {
 		GET_INCIDENT_LIST: "api/incident/list/",
 		GET_REPORT_LIST: "api/report/list/",
 		GET_REPORT_FILE: "api/report/",
+		GENERATE_REPORT: "api/report/",
 	},
 };

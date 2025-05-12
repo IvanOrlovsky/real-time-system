@@ -10,7 +10,6 @@ import {
 } from "@patternfly/react-core";
 import { useAuth } from "../../hooks";
 import { Link, Outlet, useNavigate } from "react-router";
-import { PowerSupplyIcon, RefrigerationIcon } from "../icons";
 
 export function Header() {
 	const { logout, user } = useAuth();
@@ -49,6 +48,9 @@ export function Header() {
 									<Link to="/incident">
 										Список инцидентов
 									</Link>
+								</FlexItem>
+								<FlexItem>
+									<Link to="/report">Список отчетов</Link>
 								</FlexItem>
 							</>
 						)}

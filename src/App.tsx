@@ -8,6 +8,7 @@ import {
 	PowerSupplyPage,
 	RefridgerationPage,
 	RegisterPage,
+	ReportPage,
 } from "./pages";
 
 import { Header, ProtectedRoute } from "./components";
@@ -32,6 +33,7 @@ function App() {
 								path="/incident"
 								element={<IncidentPage />}
 							/>
+							<Route path="/report" element={<ReportPage />} />
 							<Route element={<IncedentLayout />}>
 								<Route
 									path="/power-supply"

@@ -33,6 +33,20 @@ export type GetIncidentListResponseType = Array<{
 	filename: string;
 }>;
 
+export type GetReportListResponseType = Array<{
+	filename: string;
+	size: number;
+	creation_date: string;
+}>;
+
+export type GroupingTypes = "second" | "minute" | "hour" | "day";
+
+export type GenerateReportParams = {
+	timefrom: string;
+	timeto: string;
+	grouping: GroupingTypes;
+};
+
 export const dataService = {
 	getChartData: ({ parameter, position }: GetChartRequestProps) =>
 		dataAxiosInstance.get<GetChartResponseType>(API_PATHS.DATA.GET_CHART, {
@@ -62,4 +76,15 @@ export const dataService = {
 			params: { id },
 			responseType: "blob",
 		}),
+	getReportList: () =>
+		dataAxiosInstance.get<GetReportListResponseType>(
+			API_PATHS.DATA.GET_REPORT_LIST
+		),
+	getReportFile: (filename: string) =>
+		dataAxiosInstance.get(API_PATHS.DATA.GET_REPORT_FILE, {
+			params: { filename },
+			responseType: "blob",
+		}),
+	generateReport: (data: GenerateReportParams) =>
+		dataAxiosInstance.post(API_PATHS.DATA.GENERATE_REPORT, data),
 };
