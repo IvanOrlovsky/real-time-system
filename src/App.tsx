@@ -15,6 +15,10 @@ import { Header, ProtectedRoute } from "./components";
 import { useAuth } from "./hooks";
 import { LoadingPage } from "./pages/loading/LoadingPage";
 import { IncedentLayout } from "./components/IncedentLayout/IncedentLayout";
+import {
+	PowerSupplyDashBoardPage,
+	RefridgerationDashBoardPage,
+} from "./pages/dashboard";
 
 function App() {
 	const { isLoading } = useAuth();
@@ -34,6 +38,14 @@ function App() {
 								element={<IncidentPage />}
 							/>
 							<Route path="/report" element={<ReportPage />} />
+							<Route
+								path="/dashboard/power-supply"
+								element={<PowerSupplyDashBoardPage />}
+							/>
+							<Route
+								path="/dashboard/refridgeration"
+								element={<RefridgerationDashBoardPage />}
+							/>
 							<Route element={<IncedentLayout />}>
 								<Route
 									path="/power-supply"

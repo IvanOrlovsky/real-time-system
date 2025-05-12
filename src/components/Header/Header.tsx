@@ -45,6 +45,11 @@ export function Header() {
 									</Link>
 								</FlexItem>
 								<FlexItem>
+									<Link to="/dashboard/power-supply">
+										Дашборды
+									</Link>
+								</FlexItem>
+								<FlexItem>
 									<Link to="/incident">
 										Список инцидентов
 									</Link>
