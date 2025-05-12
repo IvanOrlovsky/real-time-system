@@ -12,6 +12,7 @@ import {
 import { Header, ProtectedRoute } from "./components";
 import { useAuth } from "./hooks";
 import { LoadingPage } from "./pages/loading/LoadingPage";
+import { IncedentLayout } from "./components/IncedentLayout/IncedentLayout";
 
 function App() {
 	const { isLoading } = useAuth();
@@ -26,14 +27,16 @@ function App() {
 					<Route element={<ProtectedRoute />}>
 						<Route element={<Header />}>
 							<Route path="/" element={<HomePage />} />
-							<Route
-								path="/power-supply"
-								element={<PowerSupplyPage />}
-							/>
-							<Route
-								path="/refridgeration"
-								element={<RefridgerationPage />}
-							/>
+							<Route element={<IncedentLayout />}>
+								<Route
+									path="/power-supply"
+									element={<PowerSupplyPage />}
+								/>
+								<Route
+									path="/refridgeration"
+									element={<RefridgerationPage />}
+								/>
+							</Route>
 						</Route>
 					</Route>
 

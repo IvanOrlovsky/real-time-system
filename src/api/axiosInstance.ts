@@ -9,7 +9,7 @@ export const apiAxiosInstance = axios.create({
 	withCredentials: true,
 });
 
-export const reportAxiosInstance = axios.create({
-	baseURL: process.env.REACT_APP_REPORT_API,
+export const dataAxiosInstance = axios.create({
+	baseURL: "http://localhost:9999/",
 	withCredentials: true,
 });

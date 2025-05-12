@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-type WebSocketMessage = any; // Замените на конкретный тип ваших сообщений
+type WebSocketMessage = any;
 
 export function useWebSocket(url: string) {
 	const [messages, setMessages] = useState<WebSocketMessage[]>([]);

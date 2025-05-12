@@ -7,14 +7,23 @@ export type ElementsProps = {
 	h?: number;
 	fontSize?: number;
 	children: React.ReactNode;
+	onClick: () => void;
 };
 
 export type PowerSupplyElementsProps = {
-	poz: Omit<ElementsProps, "children">;
+	poz: Omit<ElementsProps, "children" | "onClick">;
 	index: number;
 };
 
-export function Element({ children, x, y, w, h, fontSize }: ElementsProps) {
+export function Element({
+	children,
+	x,
+	y,
+	w,
+	h,
+	fontSize,
+	onClick,
+}: ElementsProps) {
 	return (
 		<Flex
 			style={{
@@ -29,10 +38,12 @@ export function Element({ children, x, y, w, h, fontSize }: ElementsProps) {
 				padding: "2px",
 				borderRadius: "8px",
 				// border: "1px solid #3D6229",
+				cursor: "pointer",
 			}}
 			direction={{ default: "column" }}
 			gap={{ default: "gapXs" }}
 			justifyContent={{ default: "justifyContentFlexStart" }}
+			onClick={onClick}
 		>
 			{children}
 		</Flex>
