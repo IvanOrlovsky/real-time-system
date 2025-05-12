@@ -106,9 +106,19 @@ export const CreateIncidentModal: React.FunctionComponent<
 							filenamePlaceholder="Выберите файл"
 							browseButtonText="Загрузить"
 							clearButtonText="Убрать файл"
-							onFileInputChange={(_, file) => setFile(file)}
+							onFileInputChange={(_, file) => {
+								if (file.name.split(".")[1] !== "pdf") {
+									toast.error(
+										"Формат файла должен быть PDF!"
+									);
+									setFile(undefined);
+								} else {
+									setFile(file);
+								}
+							}}
 							hideDefaultPreview
 							filename={file?.name}
+							onClearClick={() => setFile(undefined)}
 							onReadStarted={() => setFileIsLoading(true)}
 							onReadFinished={() => setFileIsLoading(false)}
 							onReadFailed={(event, error) => {

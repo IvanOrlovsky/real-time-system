@@ -6,3 +6,4 @@ export * from "./IncedentLayout";
 export * from "./Chart";
 export * from "./DateTimePicker";
 export * from "./CreateIncidentModal";
+export * from "./IncidentTable";

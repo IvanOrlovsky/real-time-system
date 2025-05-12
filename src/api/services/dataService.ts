@@ -26,6 +26,13 @@ export interface CreateIncidentParams {
 	file: File;
 }
 
+export type GetIncidentListResponseType = Array<{
+	id: string;
+	title: string;
+	timestamp: string;
+	filename: string;
+}>;
+
 export const dataService = {
 	getChartData: ({ parameter, position }: GetChartRequestProps) =>
 		dataAxiosInstance.get<GetChartResponseType>(API_PATHS.DATA.GET_CHART, {
@@ -46,4 +53,13 @@ export const dataService = {
 			}
 		);
 	},
+	getIncidentList: () =>
+		dataAxiosInstance.get<GetIncidentListResponseType>(
+			API_PATHS.DATA.GET_INCIDENT_LIST
+		),
+	getIncidentFile: (id: string) =>
+		dataAxiosInstance.get(API_PATHS.DATA.GET_INCIDENT_FILE, {
+			params: { id },
+			responseType: "blob",
+		}),
 };

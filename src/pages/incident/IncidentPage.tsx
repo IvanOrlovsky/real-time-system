@@ -1,3 +1,9 @@
+import { IncidentTable } from "../../components";
+
 export function IncidentPage() {
-	return <>IncidentPage</>;
+	return (
+		<>
+			<IncidentTable />
+		</>
+	);
 }

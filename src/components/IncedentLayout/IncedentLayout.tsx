@@ -58,7 +58,6 @@ export function IncedentLayout() {
 			<AlertGroup hasAnimations isToast isLiveRegion>
 				{alerts.map(({ key, title, desc }) => (
 					<Alert
-					
 						variant="danger"
 						title={title}
 						actionClose={
@@ -74,6 +73,7 @@ export function IncedentLayout() {
 								size="sm"
 								variant="warning"
 								onClick={() => setIsModalOpen(true)}
+								key={"Button-" + key}
 							>
 								Завести инцидент
 							</Button>,

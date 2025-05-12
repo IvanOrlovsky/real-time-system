@@ -10,7 +10,8 @@ export const API_PATHS = {
 	DATA: {
 		GET_CHART: "api/data/",
 		CREATE_INCIDENT: "api/incident/",
-		GET_INCIDENT_LIST: "incident/list/",
+		GET_INCIDENT_FILE: "api/incident/",
+		GET_INCIDENT_LIST: "api/incident/list/",
 		GET_REPORT_LIST: "api/report/list/",
 		GET_REPORT_FILE: "api/report/",
 	},
