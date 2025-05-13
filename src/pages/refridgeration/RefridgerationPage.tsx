@@ -1,6 +1,8 @@
 import { Divider, Flex } from "@patternfly/react-core";
 import { Link } from "react-router";
 import { PowerSupplyIcon, RefrigerationIcon } from "../../components";
+import { RefridgeratorContextProvider } from "../../hooks/useRefridgeratorContext";
+import { Chiller } from "./Elements/Chiller";
 
 export function RefridgerationPage() {
 	return (
@@ -84,6 +86,12 @@ export function RefridgerationPage() {
 					src="/refridgeration-img.png"
 					alt="Схема холодоснабжения"
 				/>
+				<RefridgeratorContextProvider>
+					<Chiller
+						index={0}
+						poz={{ x: 1, y: 350, w: 100, h: 80, fontSize: 15 }}
+					/>
+				</RefridgeratorContextProvider>
 			</div>
 		</>
 	);
